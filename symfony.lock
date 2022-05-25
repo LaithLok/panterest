@@ -157,6 +157,9 @@
     "psr/log": {
         "version": "3.0.0"
     },
+    "psy/psysh": {
+        "version": "v0.11.4"
+    },
     "sebastian/cli-parser": {
         "version": "1.0.1"
     },
@@ -560,6 +563,9 @@
     },
     "symfony/yaml": {
         "version": "v6.0.3"
+    },
+    "theofidry/psysh-bundle": {
+        "version": "4.5.0"
     },
     "theseer/tokenizer": {
         "version": "1.2.1"
