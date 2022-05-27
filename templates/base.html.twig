@@ -9,11 +9,20 @@
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+
     </head>
     <body>
+      <nav >
+        <ul>
+         <li><a href="{{path('app_home')}}">Home</a></li>
+         <li><a href="{{path('app_pins_create')}}">New Pin</a></li>
+
+        </ul>
+       </nav>
+
         {% block body %}{% endblock %}
+         {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
     </body>
 </html>

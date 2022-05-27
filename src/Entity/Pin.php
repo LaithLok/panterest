@@ -7,11 +7,14 @@ use App\Repository\PinRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 
+
+
 #[ORM\Entity(repositoryClass: PinRepository::class)]
 #[ORM\Table(name:'pins')]
 #[ORM\HasLifecycleCallbacks]
 class Pin
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -23,11 +26,7 @@ class Pin
     #[ORM\Column(type: 'text')]
     private $description;
 
-    #[ORM\Column(type: 'datetime' , options:['default','CURRENT_TIMESTAMP'])]
-    private $createdAt;
 
-    #[ORM\Column(type: 'datetime', options:['default','CURRENT_TIMESTAMP'])]
-    private $updatedAt;
 
     public function getId(): ?int
     {
@@ -57,25 +56,33 @@ class Pin
 
         return $this;
     }
+    #[ORM\Column(type: 'datetime' , options:['default','CURRENT_TIMESTAMP'])]
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    private $createdAt;
+
+    #[ORM\Column(type: 'datetime', options:['default','CURRENT_TIMESTAMP'])]
+
+    private $updatedAt;
+
+
+   public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -85,6 +92,7 @@ class Pin
 
     #[ORM\PrePersist]
     #[ORM\PreUpdate]
+
     public function updateTimestamps()
     {
       if ($this-> getCreatedAt() ===null) {
