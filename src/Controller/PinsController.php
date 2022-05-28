@@ -53,14 +53,15 @@ class PinsController extends AbstractController
     }
 
      #[Route('/pins/{id<[0-9]+>}/edit', name: 'app_pins_edit',methods:'GET|POST')]
+
     public function edit ( Request $request,Pin $pin,EntityManagerInterface $em): Response
     {
-      $form= $this->createForm(PinType::class, $pin );
+      $form= $this->createForm(PinType::class, $pin);
 
       $form->handleRequest($request);
 
       if ($form->isSubmitted() && $form->isValid()) {
-        $em->persist($pin);
+
         $em->flush();
 
          return $this->redirectToRoute('app_home');
