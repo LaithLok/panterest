@@ -6,8 +6,6 @@ use App\Form\PinType;
 use App\Repository\PinRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -64,7 +62,7 @@ class PinsController extends AbstractController
 
         $em->flush();
 
-         return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_home');
       }
       return $this->render('pins/edit.html.twig',[
 
@@ -72,6 +70,14 @@ class PinsController extends AbstractController
         'form'=>$form->createView()
 
       ]);
+    }
+    #[Route('/pins/{id<[0-9]+>}/delete', name: 'app_pins_delete',methods:'GET|POST')]
+
+    public function delete ( Pin $pin,EntityManagerInterface $em): Response
+    {
+      $em ->remove($pin);
+      $em->flush();
+      return $this->redirectToRoute('app_home');
     }
 }
 
