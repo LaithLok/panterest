@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class PinsController extends AbstractController
 {
     #[Route('/', name: 'app_home',methods:'GET')]

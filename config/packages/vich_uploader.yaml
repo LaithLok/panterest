@@ -1,8 +1,14 @@
 vich_uploader:
-  db_driver: orm
-
+  db_driver: orm # or mongodb or phpcr - default db driver
+  twig: true # set to false to disable twig integration
+  form: true # set to false to disable form integration
+  storage: file_system # or gaufrette or flysystem
+  metadata:
+    auto_detection: true
+    cache: file
+    type: attribute # or annotation
   mappings:
     pin_image:
-      uri_prefix: /uploads/pins
+      uri_prefix: /uploads/pins # uri prefix to resource
       upload_destination: "%kernel.project_dir%/public/uploads/pins"
       namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
