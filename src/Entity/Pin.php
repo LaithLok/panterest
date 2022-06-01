@@ -73,6 +73,9 @@ class Pin
     #[Vich\UploadableField(mapping: 'pin_image', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 
+
+
+
     #[ORM\Column(type: 'string')]
     private ?string $imageName = null;
 	    /**
