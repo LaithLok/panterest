@@ -70,19 +70,21 @@ class Pin
 	 /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      */
+    #[Assert\Image(maxSize:"8M")]
+    #[Assert\NotBlank(message:"Please upload a file")]
     #[Vich\UploadableField(mapping: 'pin_image', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 
-
-
-
     #[ORM\Column(type: 'string')]
+
     private ?string $imageName = null;
+
 	    /**
 
      *
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
      */
+
     public function setImageFile(?File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
