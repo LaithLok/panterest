@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use App\Entity\Traits\Timestampable;
 
 
 #[ORM\Entity(repositoryClass: PinRepository::class)]
@@ -111,10 +112,6 @@ class Pin
         return $this->imageName;
     }
 
-
-
-
-
     #[ORM\Column(type: 'datetime' , options:['default','CURRENT_TIMESTAMP'])]
 
     private $createdAt;
@@ -123,11 +120,7 @@ class Pin
 
     private $updatedAt;
 
-
-
-
-
-   public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
@@ -164,6 +157,7 @@ class Pin
       $this->setUpdatedAt(new DateTimeImmutable());
 
     }
+
 }
 
 
