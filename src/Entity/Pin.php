@@ -120,6 +120,10 @@ class Pin
 
     private $updatedAt;
 
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'pins')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $user;
+
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
@@ -156,6 +160,18 @@ class Pin
 
       $this->setUpdatedAt(new DateTimeImmutable());
 
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
     }
 
 }
