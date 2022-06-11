@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Pin;
+use phpDocumentor\Reflection\PseudoTypes\True_;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,6 +19,7 @@ class PinType extends AbstractType
             'label'=> 'Image (JPG ou PNG file)',
             'required' => false,
             'delete_label' => 'Delete ?',
+            'allow_delete' => true,
             'download_uri' => false,
             'imagine_pattern' =>'squared_thumbnail_small',
             ])
