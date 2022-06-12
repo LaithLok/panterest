@@ -9,9 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\UserFormType;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Form\FormInterface;
-
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
 
 class AccountController extends AbstractController
@@ -46,7 +44,7 @@ class AccountController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-      #[Route('/account/change-password', name: 'app_account_change_password',methods:'GET|PATCH')]
+      #[Route('/account/change-password', name: 'app_account_change_password',methods:'GET|POST')]
      public function changePassword(Request $request, EntityManagerInterface $entityManager, PasswordHasherFactoryInterface $passwordEncoder): Response
     {
         $user = $this->getUser();
@@ -54,7 +52,7 @@ class AccountController extends AbstractController
 
         $form = $this->createForm(ChangePasswordFormType::class, null, [
           'current_password_is_required' => true,
-          'method' => 'PATCH'
+          'method' => 'POST'
 
         ]);
 
