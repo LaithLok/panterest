@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Form\UserFormType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 class AccountController extends AbstractController
 {
@@ -20,7 +21,7 @@ class AccountController extends AbstractController
         return $this->render('account/show.html.twig');
     }
 
-     #[Route('/account/edit', name: 'app_account_edit',methods:'GET|POST')]
+     #[Route("/account/edit", name: "app_account_edit",methods:["GET|POST"])]
 
 
         public function edit(Request $request, EntityManagerInterface $entityManager): Response
@@ -44,7 +45,7 @@ class AccountController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-      #[Route('/account/change-password', name: 'app_account_change_password',methods:'GET|POST')]
+      #[Route("/account/change-password", name: "app_account_change_password",methods:["GET|POST"])]
      public function changePassword(Request $request, EntityManagerInterface $entityManager, PasswordHasherFactoryInterface $passwordEncoder): Response
     {
         $user = $this->getUser();
@@ -52,7 +53,7 @@ class AccountController extends AbstractController
 
         $form = $this->createForm(ChangePasswordFormType::class, null, [
           'current_password_is_required' => true,
-          'method' => 'POST'
+          'method' => 'PATCH'
 
         ]);
 
